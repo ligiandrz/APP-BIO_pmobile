@@ -1,98 +1,163 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
-export default function HomeScreen() {
+//professor desde de terça estou passando mau de uma virose mto forte por isso n consegui terminar todo o codigo
+// eu acho q abri o arquivo pra fzer o codigo errado? pq o seu na aula estava com a estrutura mto diferente, ia pedir aula hj na aula
+//mas estava passando mau de febre, estou entregando msm assim pra pelo menos valer oq eu fiz
+import { LinearGradient } from 'expo-linear-gradient';
+import { StatusBar } from 'expo-status-bar';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+const { width } = Dimensions.get('window');
+export default function App() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <LinearGradient
+      colors={['#131416','#131416', '#d51012']}
+      style={styles.container}
+    >
+      <SafeAreaView style={{ flex: 1 }}>
+  <ScrollView contentContainerStyle={styles.content}>
+        <StatusBar style="light" />
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  <Image 
+  source={require('../../assets/images/pexels-grizzlybear-965875.jpg')}
+  style={styles.banner}/>
+
+  <Text style={styles.subtitle}>Introducing myself and my work</Text>
+  <Text style={styles.title}>LÍGIA ANDREZA</Text>
+  <Text style={styles.subtitle}>de Carvalho Gonser</Text>
+
+  <View style={styles.aboutContainer}>
+  <Text style={styles.aboutText}> Sobre mim: {'\n\n'}</Text>
+  <Text style={styles.aboutText}>
+    Sou uma estudante de Ciência da Computação, atualmente busco constantemente evoluir,
+    explorando novas ferramentas, metodologias e linguagens que ampliem minhas habilidades
+    técnicas e meu repertório criativo.
+
+    {'\n\n'}
+
+    Além do interesse acadêmico e profissional, valorizo a colaboração e a troca de
+    conhecimento. Gosto de ser participativa em iniciativas que promovem obtenção de
+    experiência, inclusão e fortalecimento da comunidade tecnológica. Nesse contexto,
+    atuo como voluntária na Katie Ufal, um projeto dedicado a incentivar a participação
+    feminina na computação por meio de ações de apoio às graduandas de STEM e atividades
+    direcionadas a meninas do ensino médio, contribuindo para o desenvolvimento de um
+    ambiente mais diverso e equitativo na área.
+  </Text>
+  </View>
+  <Text style={styles.projectsTitle}>Meus Projetos</Text>
+
+<ScrollView
+  horizontal
+  pagingEnabled
+  showsHorizontalScrollIndicator={false}
+  style={{ marginTop: 20 }}
+>
+// sei q o senhor q n era bom colocar link , mas aq eu tinha intenção de fzer assim...
+  <View style={styles.card}>
+    <Text style={styles.cardTitle}>AppClimaBom</Text>
+    <Text style={styles.cardText}>
+      O objetivo do sistema é fornecer informações meteorológicas atualizadas e precisas,
+      permitindo que os usuários consultem o clima atual, previsões e alertas de forma simples e intuitiva.
+    </Text>
+  </View>
+
+  <View style={styles.card}>
+    <Text style={styles.cardTitle}>Quiz POO</Text>
+    <Text style={styles.cardText}>
+      Um quiz interativo no console aplicando conceitos de Programação Orientada a Objetos:
+      abstração, encapsulamento, herança, polimorfismo e interfaces.
+    </Text>
+  </View>
+
+  <View style={styles.card}>
+    <Text style={styles.cardTitle}>Fila prioritária</Text>
+    <Text style={styles.cardText}>
+      Sistema que gerencia duas filas de atendimento: uma prioritária e outra normal,
+      garantindo organização e atendimento mais justo.
+    </Text>
+  </View>
+
+</ScrollView>
+</ScrollView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
-
+// topo
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+  },
+
+  content: {
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'flex-start',
+    paddingTop: 40
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+
+  title: {
+    color: '#ffffff',
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginVertical: 10
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+
+  subtitle: {
+    color: '#dddddd',
+    fontSize: 16
   },
+
+  banner: {
+    width: '100%',
+    height: 200,
+    marginBottom: 0,
+    marginTop: 20,
+  },
+// Sobre mim:
+  aboutContainer: {
+    alignItems: 'center',
+    marginTop: 20,
+    paddingHorizontal: 20,
+  },
+
+  aboutText: {
+  color: '#ffffff',
+  fontSize: 14,
+  lineHeight: 20,
+  textAlign: 'justify',
+},
+  aboutProjects: {
+  alignItems: 'center',
+  marginTop: 20,
+  paddingHorizontal: 20,
+  color: '#ffffff',
+  fontSize: 14,
+  textAlign: 'justify',
+  },
+  projectsTitle: {
+  color: '#ffffff',
+  fontSize: 18,
+  fontWeight: 'bold',
+  marginTop: 30
+},
+
+card: {
+  width: width - 40,
+  marginHorizontal: 20,
+  padding: 20,
+  backgroundColor: '#5a0000',
+  borderRadius: 15
+},
+
+cardTitle: {
+  color: '#ffffff',
+  fontSize: 18,
+  fontWeight: 'bold',
+  marginBottom: 10
+},
+
+cardText: {
+  color: '#ffffff',
+  fontSize: 14,
+  lineHeight: 20,
+  textAlign: 'justify'
+}
 });
